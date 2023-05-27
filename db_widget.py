@@ -58,7 +58,7 @@ class My_Db_Widget(QtWidgets.QWidget):
         """
         self.dzTableModel = QtSql.QSqlTableModel(self)
         self.dzTableModel.setTable('AAD')
-        self.dzTableModel.setEditStrategy(QtSql.QSqlTableModel.EditStrategy.OnManualSubmit)
+        self.dzTableModel.setEditStrategy(QtSql.QSqlTableModel.EditStrategy.OnRowChange)
         self.dzTableModel.select()
 
         # self.stm.setHeaderData(1, QtCore.Qt.Orientation.Horizontal, "ID")
