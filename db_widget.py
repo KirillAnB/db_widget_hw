@@ -1,6 +1,7 @@
 import sys
 
 from PySide6 import QtWidgets, QtSql, QtCore, QtGui
+from calendar_delegate import CalendarToDelegate
 
 class My_Db_Widget(QtWidgets.QWidget):
 
@@ -32,9 +33,12 @@ class My_Db_Widget(QtWidgets.QWidget):
         self.tableView = QtWidgets.QTableView()
         self.tableView.resizeColumnsToContents()
         self.tableView.setModel(self.dzTableModel)
+        # self.tableView.setItemDelegateForColumn(4, CalendarToDelegate())
+        # self.tableView.setItemDelegateForColumn(5, CalendarToDelegate())
+        self.tableView.setItemDelegateForColumn(6, CalendarToDelegate())
         #
         # Скрываю колонку id
-        # self.tableView.hideColumn(0)
+        self.tableView.hideColumn(1)
 
 
         self.addButton = QtWidgets.QPushButton('Внести запись')
@@ -61,14 +65,13 @@ class My_Db_Widget(QtWidgets.QWidget):
         self.dzTableModel.setEditStrategy(QtSql.QSqlTableModel.EditStrategy.OnRowChange)
         self.dzTableModel.select()
 
-        # self.stm.setHeaderData(1, QtCore.Qt.Orientation.Horizontal, "ID")
-        self.dzTableModel.setHeaderData(2, QtCore.Qt.Orientation.Horizontal, "AAD ID")
-        self.dzTableModel.setHeaderData(3, QtCore.Qt.Orientation.Horizontal, "SERIAL NUMBER")
-        self.dzTableModel.setHeaderData(4, QtCore.Qt.Orientation.Horizontal, "MANUFACTURER")
-        self.dzTableModel.setHeaderData(5, QtCore.Qt.Orientation.Horizontal, "MODEL")
-        self.dzTableModel.setHeaderData(6, QtCore.Qt.Orientation.Horizontal, "MFD")
-        self.dzTableModel.setHeaderData(7, QtCore.Qt.Orientation.Horizontal, "SERVICE DATE")
-        self.dzTableModel.setHeaderData(8, QtCore.Qt.Orientation.Horizontal, "VALID DATE")
+        self.dzTableModel.setHeaderData(0, QtCore.Qt.Orientation.Horizontal, "AAD ID")
+        self.dzTableModel.setHeaderData(1, QtCore.Qt.Orientation.Horizontal, "SERIAL NUMBER")
+        self.dzTableModel.setHeaderData(2, QtCore.Qt.Orientation.Horizontal, "MANUFACTURER")
+        self.dzTableModel.setHeaderData(3, QtCore.Qt.Orientation.Horizontal, "MODEL")
+        self.dzTableModel.setHeaderData(4, QtCore.Qt.Orientation.Horizontal, "MFD")
+        self.dzTableModel.setHeaderData(5, QtCore.Qt.Orientation.Horizontal, "SERVICE DATE")
+        self.dzTableModel.setHeaderData(6, QtCore.Qt.Orientation.Horizontal, "VALID DATE")
 
     def initSignals(self) -> None:
         """
