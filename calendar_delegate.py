@@ -13,9 +13,9 @@ class CalendarToDelegate(QtWidgets.QStyledItemDelegate):
         return editor
     def updateEditorGeometry(self, editor: QtWidgets.QWidget, option: QtWidgets.QStyleOptionViewItem, index: Union[QtCore.QModelIndex, QtCore.QPersistentModelIndex]) -> None:
 
-        self.updateEditorGeometry(option.rect)
+        editor.setGeometry(option.rect)
 
     def setModelData(self, editor: QtWidgets.QWidget, model: QtCore.QAbstractItemModel, index: Union[QtCore.QModelIndex, QtCore.QPersistentModelIndex]) -> None:
 
         date = editor.selectedDate()
-        model.setData(value=date)
+        model.setData(index, date, QtCore.Qt.EditRole)
